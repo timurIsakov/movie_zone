@@ -5,21 +5,19 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/utils/assets.dart';
-import 'package:movie_zone/core/utils/form_validator.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
-import 'package:movie_zone/features/auth/presentation/screens/sign_in_part_two_screen.dart';
+import 'package:movie_zone/features/main/presentation/screens/main_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:pinput/pinput.dart';
 
-import '../../../../core/widgets/input_widget.dart';
-
-class SignInPartOneScreen extends StatefulWidget {
-  const SignInPartOneScreen({Key? key}) : super(key: key);
+class SignInPartThreeScreen extends StatefulWidget {
+  const SignInPartThreeScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInPartOneScreen> createState() => _SignInPartOneScreenState();
+  State<SignInPartThreeScreen> createState() => _SignInPartThreeScreenState();
 }
 
-class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
+class _SignInPartThreeScreenState extends State<SignInPartThreeScreen> {
   late TextEditingController _textEditingController;
   late GlobalKey<FormState> _formKey;
   @override
@@ -41,8 +39,39 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //Email for continue
-    _textEditingController.text = "timur092000@gmail.com";
+    final defaultPinTheme = PinTheme(
+      margin: EdgeInsets.symmetric(horizontal: 16.w / 4).r,
+      width: 64.w,
+      height: 64.h,
+      textStyle: const TextStyle(
+          fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+        color: const Color(0xff191B1C),
+        border: Border.all(color: const Color(0xff656E72)),
+        borderRadius: BorderRadius.circular(8).r,
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: Colors.white),
+      borderRadius: BorderRadius.circular(8),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        color: const Color(0xff191B1C),
+        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(8).r,
+      ),
+    );
+
+    final errorPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        border: Border.all(color: Colors.red),
+        borderRadius: BorderRadius.circular(8).r,
+      ),
+    );
+
     return KeyboardDismisser(
       child: Scaffold(
         body: Form(
@@ -70,7 +99,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                         barRadius: const Radius.circular(12).r,
                         width: 120.w,
                         lineHeight: 8.h,
-                        percent: 0.3,
+                        percent: 1,
                         backgroundColor: const Color(0xff191B1C),
                         progressColor: const Color(0xffEEEFF0),
                       ),
@@ -99,7 +128,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     height: 20.h,
                   ),
                   Text(
-                    "enterYourEmail".tr(),
+                    "enterOTPcode".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w700,
@@ -111,7 +140,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     height: 8.h,
                   ),
                   Text(
-                    "signInPartOneDescriptionOne".tr(),
+                    "signInPartThreeDescriptionOne".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w400,
@@ -122,21 +151,38 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  SizedBox(
-                    child: InputWidget(
-                      text: "inputEmail".tr(),
+                  Center(
+                    child: Pinput(
                       controller: _textEditingController,
-                      onChanged: (text) {
-                        setState(() {});
+                      defaultPinTheme: defaultPinTheme,
+                      focusedPinTheme: focusedPinTheme,
+                      submittedPinTheme: submittedPinTheme,
+                      errorPinTheme: errorPinTheme,
+                      validator: (s) {
+                        return s == '2222' ? null : 'Pin is incorrect';
                       },
-                      validator: (value) {
-                        return FormValidator.validateEmail(value);
-                      },
+                      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                      showCursor: false,
+                      onCompleted: (pin) => setState(
+                        () {},
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24.h,
+                  ),
+                  Text(
+                    "signInPartThreeDescriptionTwo".tr(),
+                    style: TextStyle(
+                      fontFamily: "SfProDisplay",
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16.sp,
+                      color: const Color(0xffB9BFC1),
                     ),
                   ),
                   const Spacer(),
                   Text(
-                    "signInPartOneDescriptionTwo".tr(),
+                    "signInPartThreeDescriptionThree".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w400,
@@ -151,7 +197,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     text: "continue".tr(),
                     onTap: () {
                       AnimatedNavigation.push(
-                          context: context, page: const SignInPartTwoScreen());
+                          context: context, page: const MainScreen());
                     },
                     isEnabled: _formKey.currentState?.validate() ?? false,
                   ),

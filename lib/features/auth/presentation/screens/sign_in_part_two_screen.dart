@@ -7,19 +7,19 @@ import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/utils/assets.dart';
 import 'package:movie_zone/core/utils/form_validator.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
-import 'package:movie_zone/features/auth/presentation/screens/sign_in_part_two_screen.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../../core/widgets/input_widget.dart';
+import 'sign_in_part_three_screen.dart';
 
-class SignInPartOneScreen extends StatefulWidget {
-  const SignInPartOneScreen({Key? key}) : super(key: key);
+class SignInPartTwoScreen extends StatefulWidget {
+  const SignInPartTwoScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInPartOneScreen> createState() => _SignInPartOneScreenState();
+  State<SignInPartTwoScreen> createState() => _SignInPartTwoScreenState();
 }
 
-class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
+class _SignInPartTwoScreenState extends State<SignInPartTwoScreen> {
   late TextEditingController _textEditingController;
   late GlobalKey<FormState> _formKey;
   @override
@@ -42,7 +42,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
   @override
   Widget build(BuildContext context) {
     //Email for continue
-    _textEditingController.text = "timur092000@gmail.com";
+    _textEditingController.text = "Ibnndjcdcdn";
     return KeyboardDismisser(
       child: Scaffold(
         body: Form(
@@ -70,7 +70,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                         barRadius: const Radius.circular(12).r,
                         width: 120.w,
                         lineHeight: 8.h,
-                        percent: 0.3,
+                        percent: 0.6,
                         backgroundColor: const Color(0xff191B1C),
                         progressColor: const Color(0xffEEEFF0),
                       ),
@@ -99,7 +99,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     height: 20.h,
                   ),
                   Text(
-                    "enterYourEmail".tr(),
+                    "enterYourPassword".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w700,
@@ -111,7 +111,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     height: 8.h,
                   ),
                   Text(
-                    "signInPartOneDescriptionOne".tr(),
+                    "signInPartTwoDescriptionOne".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w400,
@@ -124,19 +124,19 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                   ),
                   SizedBox(
                     child: InputWidget(
-                      text: "inputEmail".tr(),
+                      text: "inputPassword".tr(),
                       controller: _textEditingController,
                       onChanged: (text) {
                         setState(() {});
                       },
                       validator: (value) {
-                        return FormValidator.validateEmail(value);
+                        return FormValidator.password(value);
                       },
                     ),
                   ),
                   const Spacer(),
                   Text(
-                    "signInPartOneDescriptionTwo".tr(),
+                    "signInPartTwoDescriptionTwo".tr(),
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w400,
@@ -151,7 +151,8 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                     text: "continue".tr(),
                     onTap: () {
                       AnimatedNavigation.push(
-                          context: context, page: const SignInPartTwoScreen());
+                          context: context,
+                          page: const SignInPartThreeScreen());
                     },
                     isEnabled: _formKey.currentState?.validate() ?? false,
                   ),

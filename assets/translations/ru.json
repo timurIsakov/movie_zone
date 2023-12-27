@@ -8,5 +8,14 @@
   "signInPartOneDescriptionOne" : "Enter your email to continue to create to your account",
   "signInPartOneDescriptionTwo" : "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies",
   "continue" : "Continue",
-  "inputEmail" : "Enter your email"
+  "inputEmail" : "Enter your email",
+  "enterYourPassword" : "Enter your password",
+  "signInPartTwoDescriptionOne" : "Enter your password to continue to create to your account",
+  "signInPartTwoDescriptionTwo" : "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies",
+  "inputPassword" : "Enter your password",
+  "enterOTPcode" : "Enter OTP code",
+  "signInPartThreeDescriptionOne" : "Enter the OTP code that we will send to your email",
+  "signInPartThreeDescriptionTwo" : "Not receiving email? check on promotion page, spam or Resend code",
+  "signInPartThreeDescriptionThree" : "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies"
+
 }
