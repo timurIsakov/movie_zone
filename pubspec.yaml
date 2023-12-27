@@ -44,6 +44,7 @@ dependencies:
   readmore: ^2.2.0
   get_it: ^7.6.4
   equatable: ^2.0.5
+  keyboard_dismisser: ^3.0.0
 
 dev_dependencies:
   flutter_test:

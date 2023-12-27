@@ -18,7 +18,7 @@ class ButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onTap.call();
+        isEnabled ? onTap.call() : null;
       },
       child: Container(
         height: 43.h,
@@ -27,8 +27,11 @@ class ButtonWidget extends StatelessWidget {
             border:
                 isOutline ? Border.all(color: const Color(0xffEEEFF0)) : null,
             borderRadius: BorderRadius.circular(8).r,
-            color:
-                isOutline ? const Color(0xff101111) : const Color(0xffEEEFF0)),
+            color: isEnabled
+                ? isOutline
+                    ? const Color(0xff101111)
+                    : const Color(0xffEEEFF0)
+                : const Color(0xff272B2C)),
         child: Center(
           child: Text(
             text,
@@ -36,8 +39,11 @@ class ButtonWidget extends StatelessWidget {
               fontFamily: "SfProDisplay",
               fontWeight: FontWeight.w500,
               fontSize: 16.sp,
-              color:
-                  isOutline ? const Color(0xffEEEFF0) : const Color(0xff191B1C),
+              color: isEnabled
+                  ? isOutline
+                      ? const Color(0xffEEEFF0)
+                      : const Color(0xff191B1C)
+                  : const Color(0xff747E83),
             ),
           ),
         ),
