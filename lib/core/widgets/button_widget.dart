@@ -6,12 +6,14 @@ class ButtonWidget extends StatelessWidget {
   final bool isOutline;
   final bool isEnabled;
   final Function() onTap;
+  final Widget? icon;
   const ButtonWidget(
       {Key? key,
       required this.text,
       this.isOutline = false,
       this.isEnabled = true,
-      required this.onTap})
+      required this.onTap,
+      this.icon})
       : super(key: key);
 
   @override
@@ -21,7 +23,7 @@ class ButtonWidget extends StatelessWidget {
         isEnabled ? onTap.call() : null;
       },
       child: Container(
-        height: 43.h,
+        height: icon == null ? 43.h : 48.h,
         width: MediaQuery.of(context).size.width.w,
         decoration: BoxDecoration(
             border:
@@ -33,18 +35,24 @@ class ButtonWidget extends StatelessWidget {
                     : const Color(0xffEEEFF0)
                 : const Color(0xff272B2C)),
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontFamily: "SfProDisplay",
-              fontWeight: FontWeight.w500,
-              fontSize: 16.sp,
-              color: isEnabled
-                  ? isOutline
-                      ? const Color(0xffEEEFF0)
-                      : const Color(0xff191B1C)
-                  : const Color(0xff747E83),
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (icon != null) icon!,
+              Text(
+                text,
+                style: TextStyle(
+                  fontFamily: "SfProDisplay",
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.sp,
+                  color: isEnabled
+                      ? isOutline
+                          ? const Color(0xffEEEFF0)
+                          : const Color(0xff191B1C)
+                      : const Color(0xff747E83),
+                ),
+              ),
+            ],
           ),
         ),
       ),

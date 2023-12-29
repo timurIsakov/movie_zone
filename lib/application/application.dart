@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_zone/core/utils/assets.dart';
+import 'package:movie_zone/features/main/domain/entities/movie_entity.dart';
 
-import '../features/auth/presentation/screens/on_boarding_screen.dart';
+import '../features/main/presentation/screens/movie_details_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -25,7 +27,17 @@ class Application extends StatelessWidget {
           home: child,
         );
       },
-      child: const OnBoardingScreen(),
+      child: MovieDetailsScreen(
+        movieEntity: MovieEntity(
+          title: "Oppenheimer",
+          post: Assets.tOppenheimerPost,
+          description:
+              "\"Oppenheimer\" is a biographical film that chronicles the life of J. Robert Oppenheimer, a brilliant physicist who was instrumental in developing the atomic bomb during World War II. This film explores Oppenheim",
+          trailerURL: "",
+          trailerDuration: "1m 45s",
+          createdAt: DateTime.now(),
+        ),
+      ),
     );
   }
 }

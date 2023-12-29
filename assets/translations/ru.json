@@ -16,6 +16,12 @@
   "enterOTPcode" : "Enter OTP code",
   "signInPartThreeDescriptionOne" : "Enter the OTP code that we will send to your email",
   "signInPartThreeDescriptionTwo" : "Not receiving email? check on promotion page, spam or Resend code",
-  "signInPartThreeDescriptionThree" : "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies"
+  "signInPartThreeDescriptionThree" : "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies",
+  "startWatching" : "Start Watching",
+  "download" : "Download",
+  "trailer" : "Trailer",
+  "trailerTitle" : "{}",
+  "trailerTime" : "{}",
+  "basedOnCast" : "Based on {} Cast"
 
 }
