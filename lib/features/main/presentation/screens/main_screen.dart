@@ -5,6 +5,7 @@ import 'package:movie_zone/features/main/presentation/screens/movie_details_scre
 
 import '../../../../core/utils/assets.dart';
 import '../../domain/entities/movie_entity.dart';
+import 'brands_screen.dart';
 import 'library_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<Widget> listOfScreen = [
-    const LibraryScreen(),
+    const BrandsScreen(),
     MovieDetailsScreen(
       movieEntity: MovieEntity(
         title: "Oppenheimer",
@@ -28,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
         createdAt: DateTime.now(),
       ),
     ),
-    const Placeholder(),
+    const LibraryScreen(),
     const Placeholder(),
   ];
   int currentIndex = 0;

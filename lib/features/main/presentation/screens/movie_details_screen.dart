@@ -233,30 +233,14 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        "basedOnCast"
-                            .tr(args: [widget.movieEntity.title.toLowerCase()]),
-                        style: TextStyle(
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: "SfProDisplay",
-                            color: const Color(0xffEEEFF0)),
-                      ),
-                      SizedBox(
-                        width: 4.w,
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                        width: 24.w,
-                        child: Icon(
-                          Icons.arrow_forward_ios_sharp,
-                          color: Colors.white,
-                          size: 20.r,
-                        ),
-                      )
-                    ],
+                  Text(
+                    "basedOnCast"
+                        .tr(args: [widget.movieEntity.title.toLowerCase()]),
+                    style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: "SfProDisplay",
+                        color: const Color(0xffEEEFF0)),
                   ),
                   SizedBox(
                     height: 20.h,

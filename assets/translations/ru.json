@@ -24,6 +24,8 @@
   "trailerTime" : "{}",
   "basedOnCast" : "Based on {} Cast",
   "myLibrary" : "My Library",
-  "libraryDescription" : "The video that you have downloaded will be accessible offline for 30 days, after it ends it will be updated when you are connected to the internet"
+  "libraryDescription" : "The video that you have downloaded will be accessible offline for 30 days, after it ends it will be updated when you are connected to the internet",
+  "brandFeatured" : "Featured",
+  "brandMostWatched" : "Most Watched"
 
 }

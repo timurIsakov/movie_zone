@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen.dart';
-import 'package:movie_zone/features/main/presentation/screens/main_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -25,8 +24,7 @@ class Application extends StatelessWidget {
           home: child,
         );
       },
-      //child: const OnBoardingScreen(),
-      child: MainScreen(),
+      child: const OnBoardingScreen(),
     );
   }
 }
