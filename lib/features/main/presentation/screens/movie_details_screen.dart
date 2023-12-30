@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_zone/core/utils/assets.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../domain/entities/movie_entity.dart';
 
@@ -65,7 +66,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                   Icons.arrow_back_ios_new,
                                   color: Colors.white,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
                               )),
                           const Spacer(),
                           SizedBox(
@@ -105,7 +108,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           Assets.tPlayIcon,
                           height: 24.h,
                           width: 24.w,
-                          color: Colors.black,
+                          colorFilter: const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn),
+                          //color: Colors.black,
                         ),
                       ),
                       onTap: () {}),
@@ -120,7 +125,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         Assets.tDownloadIcon,
                         height: 24.h,
                         width: 24.w,
-                        color: Colors.white,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.white, BlendMode.srcIn),
                       ),
                     ),
                     onTap: () {},
@@ -129,7 +135,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   SizedBox(
                     height: 24.h,
                   ),
-                  Text(
+                  ReadMoreText(
                     widget.movieEntity.description,
                     style: TextStyle(
                       color: const Color(0xffB9BFC1),
@@ -137,6 +143,15 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       fontWeight: FontWeight.w400,
                       fontSize: 16.sp,
                     ),
+                    trimLines: 5,
+                    colorClickableText: Colors.white,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: 'Read more',
+                    trimExpandedText: '   Show less',
+                    moreStyle: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                        color: const Color(0xffEEEFF0)),
                   ),
                   SizedBox(
                     height: 24.h,

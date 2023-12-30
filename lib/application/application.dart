@@ -32,7 +32,7 @@ class Application extends StatelessWidget {
           title: "Oppenheimer",
           post: Assets.tOppenheimerPost,
           description:
-              "\"Oppenheimer\" is a biographical film that chronicles the life of J. Robert Oppenheimer, a brilliant physicist who was instrumental in developing the atomic bomb during World War II. This film explores Oppenheim",
+              "\"Oppenheimer\" is a biographical film that chronicles the life of J. Robert Oppenheimer, a brilliant physicist who was instrumental in developing the atomic bomb during World War II. This film explores Oppenheim Loream Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
           trailerURL: "",
           trailerDuration: "1m 45s",
           createdAt: DateTime.now(),
