@@ -110,7 +110,6 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           width: 24.w,
                           colorFilter: const ColorFilter.mode(
                               Colors.black, BlendMode.srcIn),
-                          //color: Colors.black,
                         ),
                       ),
                       onTap: () {}),

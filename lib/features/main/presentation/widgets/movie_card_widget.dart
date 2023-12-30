@@ -16,7 +16,10 @@ class MovieCardWidget extends StatelessWidget {
         SizedBox(
           height: 100.h,
           width: 140.w,
-          child: Image.network(movieEntity.post),
+          child: Image.asset(
+            movieEntity.post,
+            fit: BoxFit.cover,
+          ),
         ),
         SizedBox(
           width: 8.w,
