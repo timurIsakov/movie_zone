@@ -211,14 +211,38 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  Text(
-                    "basedOnCast"
-                        .tr(args: [widget.movieEntity.title.toLowerCase()]),
-                    style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "SfProDisplay",
-                        color: const Color(0xffEEEFF0)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20).r,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "basedOnCast"
+                            .tr(args: [widget.movieEntity.title.toLowerCase()]),
+                        style: TextStyle(
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "SfProDisplay",
+                            color: const Color(0xffEEEFF0)),
+                      ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      SizedBox(
+                        height: 24.h,
+                        width: 24.w,
+                        child: Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          color: Colors.white,
+                          size: 20.r,
+                        ),
+                      )
+                    ],
                   ),
                   SizedBox(
                     height: 20.h,
@@ -246,7 +270,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),
