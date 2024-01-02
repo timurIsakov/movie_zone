@@ -28,5 +28,9 @@
   "brandFeatured": "Featured",
   "brandMostWatched": "Most Watched",
   "privasyPolicy": "Privacy Policy",
-  "privasyPolicyBody": "{}"
+  "privasyPolicyBody": "{}",
+  "helpMainTitle": "How can we help?",
+  "helpInputTitle": "Search title, genre, or character",
+  "helpCategoryPopular": "Popular Topics",
+  "helpCategoryWatching": "Watching Shows"
 }

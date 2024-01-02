@@ -6,6 +6,8 @@ class Assets {
       "assets/images/oppenheimer_post_image.png";
   static const String tBrandsBackground =
       "assets/images/brand_background_image.png";
+  static const String tHelpBackground =
+      "assets/images/help_background_image.png";
   //icon
   static const String tLeftArrowIcon = "assets/icons/left_arrow_icon.svg";
   static const String tPlayIcon = "assets/icons/play_icon.svg";

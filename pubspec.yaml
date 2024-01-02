@@ -45,6 +45,7 @@ dependencies:
   get_it: ^7.6.4
   equatable: ^2.0.5
   keyboard_dismisser: ^3.0.0
+  video_player: ^2.8.1
 
 dev_dependencies:
   flutter_test:
