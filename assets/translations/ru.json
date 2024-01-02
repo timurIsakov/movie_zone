@@ -32,5 +32,9 @@
   "helpMainTitle": "How can we help?",
   "helpInputTitle": "Search title, genre, or character",
   "helpCategoryPopular": "Popular Topics",
-  "helpCategoryWatching": "Watching Shows"
+  "helpCategoryWatching": "Watching Shows",
+  "playerMinimizeAdd": "Add to list",
+  "playerMinimizeDownload": "Download",
+  "playerMinimizeShare": "Share",
+  "playerMinimizeReport": "Report"
 }
