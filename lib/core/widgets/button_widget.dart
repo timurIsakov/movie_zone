@@ -38,7 +38,11 @@ class ButtonWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (icon != null) icon!,
+              if (icon != null)
+                Padding(
+                  padding: const EdgeInsets.only(right: 8).r,
+                  child: icon!,
+                ),
               Text(
                 text,
                 style: TextStyle(

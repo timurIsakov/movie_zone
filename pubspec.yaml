@@ -46,6 +46,8 @@ dependencies:
   equatable: ^2.0.5
   keyboard_dismisser: ^3.0.0
   video_player: ^2.8.1
+  navigator_scope: ^1.0.1
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:

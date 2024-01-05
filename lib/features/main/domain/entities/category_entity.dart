@@ -5,9 +5,7 @@ class CategoryEntity extends Equatable {
   final String categoryId;
 
   const CategoryEntity({required this.title, required this.categoryId});
+
   @override
-  List<Object?> get props => [
-        title,
-        categoryId,
-      ];
+  List<Object?> get props => [title, categoryId];
 }

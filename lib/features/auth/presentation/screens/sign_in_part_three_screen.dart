@@ -1,14 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
-import 'package:movie_zone/core/utils/assets.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
 import 'package:movie_zone/features/main/presentation/screens/main_screen.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pinput/pinput.dart';
+
+import '../widgets/header_progress_bar.dart';
 
 class SignInPartThreeScreen extends StatefulWidget {
   const SignInPartThreeScreen({Key? key}) : super(key: key);
@@ -89,47 +88,12 @@ class _SignInPartThreeScreenState extends State<SignInPartThreeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: SvgPicture.asset(
-                                    Assets.tLeftArrowIcon,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                LinearPercentIndicator(
-                                  barRadius: const Radius.circular(12).r,
-                                  width: 120.w,
-                                  lineHeight: 8.h,
-                                  percent: 1,
-                                  backgroundColor: const Color(0xff191B1C),
-                                  progressColor: const Color(0xffEEEFF0),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(32).r,
-                                      border: Border.all(
-                                          color: const Color(0xffEEEFF0))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                            vertical: 8, horizontal: 16)
-                                        .r,
-                                    child: Text(
-                                      "buttonHelp".tr(),
-                                      style: TextStyle(
-                                        fontFamily: "SfProDisplay",
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12.sp,
-                                        color: const Color(0xffEEEFF0),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
+                            HeaderProgressBar(
+                              onTapArrow: () {
+                                Navigator.pop(context);
+                              },
+                              onTapHelp: () {},
+                              percent: 0.9,
                             ),
                             SizedBox(
                               height: 20.h,

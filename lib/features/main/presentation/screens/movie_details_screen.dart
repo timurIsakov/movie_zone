@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_zone/core/utils/assets.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
-import 'package:readmore/readmore.dart';
-
-import '../../domain/entities/movie_entity.dart';
+import 'package:movie_zone/features/main/domain/entities/movie_entity.dart';
+import 'package:movie_zone/features/main/presentation/widgets/scroll_panel_widget.dart';
+import 'package:movie_zone/features/main/presentation/widgets/trailer_card_widget.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   final MovieEntity movieEntity;
@@ -23,74 +23,79 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 450.h,
-              width: MediaQuery.of(context).size.width.w,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        widget.movieEntity.post,
-                      ),
-                      fit: BoxFit.cover)),
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    "https://movies.universalpictures.com/media/opr-tsr1sheet3-look2-rgb-3-1-1-64545c0d15f1e-1.jpg",
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Container(
-                height: 450.h,
-                width: MediaQuery.of(context).size.width.w,
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF0F1111),
+                      Color(0xff111111),
                       Colors.transparent,
                       Colors.transparent,
                       Colors.transparent,
-                      Color(0xFF0F1111),
+                      Color(0xff111111),
                     ],
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20).r,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 68.h,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20).r,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 24.h,
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
                               height: 36.h,
                               width: 36.w,
                               child: IconButton(
                                 icon: const Icon(
-                                  Icons.arrow_back_ios_new,
+                                  Icons.arrow_back_ios_sharp,
                                   color: Colors.white,
                                 ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              )),
-                          const Spacer(),
-                          SizedBox(
+                                onPressed: () {},
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
                               height: 36.h,
                               width: 36.w,
                               child: IconButton(
-                                icon: SvgPicture.asset(Assets.tAddIcon),
+                                icon: const Icon(
+                                  Icons.add_circle_outline,
+                                  color: Colors.white,
+                                ),
                                 onPressed: () {},
-                              )),
-                          SizedBox(
-                            width: 8.w,
-                          ),
-                          SizedBox(
+                              ),
+                            ),
+                            SizedBox(
+                              width: 8.w,
+                            ),
+                            SizedBox(
                               height: 36.h,
                               width: 36.w,
-                              child: IconButton(
-                                icon: SvgPicture.asset(Assets.tShareIcon),
-                                onPressed: () {},
-                              )),
-                        ],
-                      ),
-                    ],
+                              child: SvgPicture.asset(Assets.tShareIcon,
+                                  fit: BoxFit.scaleDown),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -98,132 +103,44 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20).r,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ButtonWidget(
-                      text: "startWatching".tr(),
-                      icon: Padding(
-                        padding: const EdgeInsets.only(right: 8).r,
-                        child: SvgPicture.asset(
-                          Assets.tPlayIcon,
-                          height: 24.h,
-                          width: 24.w,
-                          colorFilter: const ColorFilter.mode(
-                              Colors.black, BlendMode.srcIn),
-                        ),
-                      ),
-                      onTap: () {}),
+                    text: "startWatching".tr(),
+                    onTap: () {},
+                    icon: const Icon(Icons.play_arrow),
+                  ),
                   SizedBox(
                     height: 16.h,
                   ),
                   ButtonWidget(
                     text: "download".tr(),
-                    icon: Padding(
-                      padding: const EdgeInsets.only(right: 8).r,
-                      child: SvgPicture.asset(
-                        Assets.tDownloadIcon,
-                        height: 24.h,
-                        width: 24.w,
-                        colorFilter: const ColorFilter.mode(
-                            Colors.white, BlendMode.srcIn),
-                      ),
-                    ),
                     onTap: () {},
                     isOutline: true,
+                    icon: SvgPicture.asset(Assets.tDownloadIcon),
                   ),
                   SizedBox(
                     height: 24.h,
                   ),
-                  ReadMoreText(
+                  Text(
                     widget.movieEntity.description,
                     style: TextStyle(
-                      color: const Color(0xffB9BFC1),
                       fontFamily: "SfProDisplay",
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       fontSize: 16.sp,
+                      color: const Color(0xffB9BFC1),
                     ),
-                    trimLines: 5,
-                    colorClickableText: Colors.white,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: 'Read more',
-                    trimExpandedText: '   Show less',
-                    moreStyle: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                        color: const Color(0xffEEEFF0)),
                   ),
                   SizedBox(
                     height: 24.h,
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 100.h,
-                        width: 150.w,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(widget.movieEntity.post),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        child: Center(
-                          child: Stack(
-                            children: [
-                              Container(
-                                height: 28.h,
-                                width: 28.w,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100).r,
-                                  color: Colors.white,
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "trailer".tr(),
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "SfProDisplay",
-                                color: const Color(0xffB9BFC1)),
-                          ),
-                          Text(
-                            "trailerTitle".tr(args: [widget.movieEntity.title]),
-                            style: TextStyle(
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.w700,
-                                fontFamily: "SfProDisplay",
-                                color: const Color(0xffEEEFF0)),
-                          ),
-                          Text(
-                            "trailerTime"
-                                .tr(args: [widget.movieEntity.trailerDuration]),
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "SfProDisplay",
-                                color: const Color(0xffB9BFC1)),
-                          ),
-                        ],
-                      )
-                    ],
+                  const TrailerCardWidget(
+                    trailerUrl:
+                        "https://movies.universalpictures.com/media/opr-tsr1sheet3-look2-rgb-3-1-1-64545c0d15f1e-1.jpg",
+                    title: "Oppenheimer",
+                    duration: "1m 45s",
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 32.h,
                   ),
                 ],
               ),
@@ -231,44 +148,17 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 20).r,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "basedOnCast"
-                        .tr(args: [widget.movieEntity.title.toLowerCase()]),
-                    style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "SfProDisplay",
-                        color: const Color(0xffEEEFF0)),
+                  ScrollPanelWidget(
+                    title: "basedOnCast".tr(args: [widget.movieEntity.title]),
+                    movieEntities: const [],
                   ),
                   SizedBox(
-                    height: 20.h,
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        ...List.generate(
-                          5,
-                          (index) => Padding(
-                            padding: const EdgeInsets.only(right: 12).r,
-                            child: SizedBox(
-                              height: 200.h,
-                              width: 158.w,
-                              child: const Placeholder(),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 68.h,
+                    height: 100.h,
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
