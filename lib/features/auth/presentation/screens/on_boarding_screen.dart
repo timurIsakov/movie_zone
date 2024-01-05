@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/utils/assets.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
+import 'package:movie_zone/features/auth/presentation/screens/sign_up_part_one_screen.dart';
 
 import 'sign_in_part_one_screen.dart';
 
@@ -71,7 +72,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   height: 16.h,
                 ),
                 ButtonWidget(
-                  onTap: () {},
+                  onTap: () {
+                    AnimatedNavigation.push(
+                        context: context, page: const SignUpPartOneScreen());
+                  },
                   text: "signUp".tr(),
                   isOutline: true,
                 ),

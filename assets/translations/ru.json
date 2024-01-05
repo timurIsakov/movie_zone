@@ -43,5 +43,12 @@
   "brands": "Brands",
   "sport": "Sports",
   "featured": "Featured",
-  "mostWatched": "Most Watched"
+  "mostWatched": "Most Watched",
+  "whatsYourName": "What’s your name",
+  "signUpPartOneDescriptionOne": "Enter your name to continue to create to your account",
+  "inputName": "Enter your name",
+  "signUpPartOneDescriptionTwo": "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies",
+  "createYourPassword": "Create your password",
+  "signUpPartThreeDescriptionOne": "Create your password to continue to create to your account"
+
 }
