@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
-import 'package:movie_zone/core/utils/form_validator.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
 import 'package:movie_zone/features/auth/presentation/screens/sign_up_part_two_screen.dart';
 
@@ -98,7 +97,9 @@ class _SignUpPartOneScreenState extends State<SignUpPartOneScreen> {
                                   setState(() {});
                                 },
                                 validator: (value) {
-                                  return FormValidator.validateEmail(value);
+                                  if (value.isNotEmpty) {
+                                    true;
+                                  }
                                 },
                               ),
                             ),
