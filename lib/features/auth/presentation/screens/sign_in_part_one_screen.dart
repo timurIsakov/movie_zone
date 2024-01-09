@@ -18,7 +18,7 @@ class SignInPartOneScreen extends StatefulWidget {
 }
 
 class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
-  late TextEditingController _textEditingController;
+  late TextEditingController _controllerEmail;
   late GlobalKey<FormState> _formKey;
   @override
   void initState() {
@@ -27,13 +27,13 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
   }
 
   _initialize() {
-    _textEditingController = TextEditingController();
+    _controllerEmail = TextEditingController();
     _formKey = GlobalKey<FormState>();
   }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _controllerEmail.dispose();
     super.dispose();
   }
 
@@ -93,7 +93,7 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                             SizedBox(
                               child: InputWidget(
                                 text: "inputEmail".tr(),
-                                controller: _textEditingController,
+                                controller: _controllerEmail,
                                 onChanged: (text) {
                                   setState(() {});
                                 },
@@ -120,7 +120,9 @@ class _SignInPartOneScreenState extends State<SignInPartOneScreen> {
                               onTap: () {
                                 AnimatedNavigation.push(
                                     context: context,
-                                    page: const SignInPartTwoScreen());
+                                    page: SignInPartTwoScreen(
+                                      email: _controllerEmail.text,
+                                    ));
                               },
                               isEnabled:
                                   _formKey.currentState?.validate() ?? false,

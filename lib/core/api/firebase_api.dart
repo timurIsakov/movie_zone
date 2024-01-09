@@ -14,7 +14,7 @@ class FirebaseApi {
 
   FirebaseApi({required this.localSecureApi});
 
-  void signUp(
+    signUp(
       {required String email,
       required String password,
       required String name}) async {
@@ -24,7 +24,7 @@ class FirebaseApi {
     final userId = credential.user?.uid ?? "";
     print("User id -> $userId");
     localSecureApi.save(key: LocalKeysConstants.tUserId, value: userId);
-    _addUser(
+await    _addUser(
         collection: FirebaseCollectionsConstants.tUser,
         entity: UserEntity(
             id: userId,
@@ -34,13 +34,13 @@ class FirebaseApi {
             movies: const []));
   }
 
-  void signIn({required String email, required String password}) async {
+    signIn({required String email, required String password}) async {
     final credential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
     print("Sign in $credential");
   }
 
-  void _addUser(
+    _addUser(
       {required String collection, required UserEntity entity}) async {
     await _firestore
         .collection(collection)

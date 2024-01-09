@@ -5,20 +5,21 @@ import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/utils/form_validator.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
-import 'package:movie_zone/features/auth/presentation/screens/sign_in_part_two_screen.dart';
+import 'package:movie_zone/features/auth/presentation/screens/sign_up_part_three_screen.dart';
 
 import '../../../../core/widgets/input_widget.dart';
 import '../widgets/header_progress_bar.dart';
 
 class SignUpPartTwoScreen extends StatefulWidget {
-  const SignUpPartTwoScreen({Key? key}) : super(key: key);
+  final String name;
+  const SignUpPartTwoScreen({Key? key, required this.name}) : super(key: key);
 
   @override
   State<SignUpPartTwoScreen> createState() => _SignUpPartTwoScreenState();
 }
 
 class _SignUpPartTwoScreenState extends State<SignUpPartTwoScreen> {
-  late TextEditingController _textEditingController;
+  late TextEditingController _controllerEmail;
   late GlobalKey<FormState> _formKey;
   @override
   void initState() {
@@ -27,13 +28,13 @@ class _SignUpPartTwoScreenState extends State<SignUpPartTwoScreen> {
   }
 
   _initialize() {
-    _textEditingController = TextEditingController();
+    _controllerEmail = TextEditingController();
     _formKey = GlobalKey<FormState>();
   }
 
   @override
   void dispose() {
-    _textEditingController.dispose();
+    _controllerEmail.dispose();
     super.dispose();
   }
 
@@ -93,7 +94,7 @@ class _SignUpPartTwoScreenState extends State<SignUpPartTwoScreen> {
                             SizedBox(
                               child: InputWidget(
                                 text: "inputEmail".tr(),
-                                controller: _textEditingController,
+                                controller: _controllerEmail,
                                 onChanged: (text) {
                                   setState(() {});
                                 },
@@ -120,10 +121,13 @@ class _SignUpPartTwoScreenState extends State<SignUpPartTwoScreen> {
                               onTap: () {
                                 AnimatedNavigation.push(
                                     context: context,
-                                    page: const SignInPartTwoScreen());
+                                    page: SignUpPartThreeScreen(
+                                      name: widget.name,
+                                      email: _controllerEmail.text,
+                                    ));
                               },
                               isEnabled:
-                              _formKey.currentState?.validate() ?? false,
+                                  _formKey.currentState?.validate() ?? false,
                             ),
                             SizedBox(
                               height: 45.h,

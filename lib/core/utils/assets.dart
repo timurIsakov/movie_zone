@@ -30,4 +30,6 @@ class Assets {
   static const String tReportIcon = "assets/icons/report_icon.svg";
   //svg
   static const String tNetflixLogo = "assets/logo/netflix_logo.svg";
+  //lottie
+  static const String tMovieLoading = "assets/lottie/movie_loading.json";
 }
