@@ -47,7 +47,7 @@ class _SignInPartTwoScreenState extends State<SignInPartTwoScreen> {
       child: Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            if (state is AuthError) {
+            if (state is AuthSignInError) {
               ErrorFlushBar(state.message).show(context);
             }
             if (state is AuthSignInSuccess) {

@@ -52,7 +52,7 @@ class _SignUpPartThreeScreenState extends State<SignUpPartThreeScreen> {
       child: Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            if (state is AuthError) {
+            if (state is AuthSignUpError) {
               ErrorFlushBar(state.message).show(context);
             }
             if (state is AuthSignUpSuccess) {

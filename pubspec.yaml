@@ -53,6 +53,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   another_flushbar: ^1.12.30
   lottie: ^2.7.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:

@@ -1,50 +1,52 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_zone/core/api/constants/firebase_collections_constants.dart';
-import 'package:movie_zone/core/api/local_secure_api.dart';
-import 'package:movie_zone/core/api/constants/local_keys_constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movie_zone/core/api/constants/local_keys_constants.dart';
 import 'package:movie_zone/features/auth/domain/entities/user_entity.dart';
 
 import '../../features/auth/data/models/user_model.dart';
+import '../services/secure_storage_service.dart';
+import 'constants/firebase_collections_constants.dart';
 
 class FirebaseApi {
-  final LocalSecureApi localSecureApi;
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final SecureStorageService localDb = SecureStorageService();
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore db = FirebaseFirestore.instance;
 
-  FirebaseApi({required this.localSecureApi});
+  Future<bool> signIn({required String email, required String password}) async {
+    await auth.signInWithEmailAndPassword(email: email, password: password);
+    return true;
+  }
 
-    signUp(
+  Future<bool> signUp(
       {required String email,
       required String password,
       required String name}) async {
-    final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+    final credential = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
-    print("Credential -> $credential");
-    final userId = credential.user?.uid ?? "";
-    print("User id -> $userId");
-    localSecureApi.save(key: LocalKeysConstants.tUserId, value: userId);
-await    _addUser(
-        collection: FirebaseCollectionsConstants.tUser,
-        entity: UserEntity(
-            id: userId,
-            name: name,
-            email: email,
-            password: password,
-            movies: const []));
+    final userId = credential.user?.uid ?? '';
+
+    await db.collection(FirebaseCollectionsConstants.tUser).doc(userId).set(
+        UserModel.fromEntity(
+            entity: UserEntity(
+                id: userId,
+                name: name,
+                email: email,
+                password: password,
+                movies: const [])).toJson());
+    localDb.save(key: LocalKeysConstants.tUserId, value: userId);
+    return true;
   }
 
-    signIn({required String email, required String password}) async {
-    final credential = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    print("Sign in $credential");
-  }
+  Future<UserModel> getCurrentUser() async {
+    final userId = await localDb.get(key: LocalKeysConstants.tUserId);
 
-    _addUser(
-      {required String collection, required UserEntity entity}) async {
-    await _firestore
-        .collection(collection)
-        .doc(entity.id)
-        .set(UserModel.fromEntity(entity: entity).toJson());
+    final json = await db
+        .collection(FirebaseCollectionsConstants.tUser)
+        .doc(userId)
+        .get();
+
+    final model = UserModel.fromJson(json: json.data() as Map<String, dynamic>);
+
+    return model;
   }
 }
