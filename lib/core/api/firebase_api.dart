@@ -5,7 +5,7 @@ import 'package:movie_zone/features/auth/domain/entities/user_entity.dart';
 
 import '../../features/auth/data/models/user_model.dart';
 import '../services/secure_storage_service.dart';
-import 'constants/firebase_collections_constants.dart';
+import 'constants/api_constants.dart';
 
 class FirebaseApi {
   final SecureStorageService localDb = SecureStorageService();
@@ -25,7 +25,7 @@ class FirebaseApi {
         email: email, password: password);
     final userId = credential.user?.uid ?? '';
 
-    await db.collection(FirebaseCollectionsConstants.tUser).doc(userId).set(
+    await db.collection(ApiConstants.tUser).doc(userId).set(
         UserModel.fromEntity(
             entity: UserEntity(
                 id: userId,
@@ -40,10 +40,7 @@ class FirebaseApi {
   Future<UserModel> getCurrentUser() async {
     final userId = await localDb.get(key: LocalKeysConstants.tUserId);
 
-    final json = await db
-        .collection(FirebaseCollectionsConstants.tUser)
-        .doc(userId)
-        .get();
+    final json = await db.collection(ApiConstants.tUser).doc(userId).get();
 
     final model = UserModel.fromJson(json: json.data() as Map<String, dynamic>);
 

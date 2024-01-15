@@ -54,6 +54,7 @@ dependencies:
   another_flushbar: ^1.12.30
   lottie: ^2.7.0
   dartz: ^0.10.1
+  http: ^1.1.2
 
 dev_dependencies:
   flutter_test:
