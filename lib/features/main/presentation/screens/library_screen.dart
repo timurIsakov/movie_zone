@@ -31,7 +31,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    final entity = MovieEntity(
+    const entity = MovieEntity(
         id: 1, title: "", imageUrl: '', releaseDate: '', overall: 1);
     return Scaffold(
       body: SafeArea(
@@ -66,7 +66,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 3,
                 (index) => Padding(
                   padding: const EdgeInsets.only(bottom: 20).r,
-                  child: MovieCardWidget(movieEntity: entity),
+                  child: const MovieCardWidget(movieEntity: entity),
                 ),
               ),
               SizedBox(height: 12.h),

@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 
 import '../../features/auth/data/datasources/auth_local_data_source.dart';
 import 'api_exception.dart';
-import 'constants/api_constants.dart';
+import 'api_constants.dart';
 
 abstract class ApiClient {
   Future<dynamic> get(String path, Map<String, dynamic> params);

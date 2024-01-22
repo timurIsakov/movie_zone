@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_zone/core/utils/animated_navigation.dart';
+import 'package:movie_zone/features/auth/presentation/cubit/auth/auth_cubit.dart';
+import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
 
 import '../widgets/profile_item_widget.dart';
@@ -89,7 +92,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             withUnderline: false,
             prefix: const Icon(Icons.exit_to_app, color: Colors.white),
             title: 'logOut',
-            onTap: () {},
+            onTap: () {
+              BlocProvider.of<AuthCubit>(context).logOut();
+              AnimatedNavigation.push(
+                  context: context, page: const OnBoardingScreen());
+            },
           ),
           SizedBox(height: 16.h),
           Padding(

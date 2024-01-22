@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_zone/core/api/constants/local_keys_constants.dart';
 import 'package:movie_zone/features/auth/domain/entities/user_entity.dart';
 
 import '../../features/auth/data/models/user_model.dart';
 import '../services/secure_storage_service.dart';
-import 'constants/api_constants.dart';
+import '../services/storage_keys.dart';
+import 'api_constants.dart';
 
 class FirebaseApi {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -19,9 +19,7 @@ class FirebaseApi {
         await auth.signInWithEmailAndPassword(email: email, password: password);
     final userId = credential.user?.uid ?? '';
 
-    await secureStorageService.save(
-        key: LocalKeysConstants.tUserId, value: userId);
-
+    await secureStorageService.save(key: StorageKeys.kSession, value: userId);
     return true;
   }
 
@@ -42,14 +40,12 @@ class FirebaseApi {
                 email: email,
                 password: password,
                 movies: const [])).toJson());
-    await secureStorageService.save(
-        key: LocalKeysConstants.tUserId, value: userId);
+    await secureStorageService.save(key: ApiConstants.tUser, value: userId);
     return true;
   }
 
   Future<UserModel> getCurrentUser() async {
-    final userId =
-        await secureStorageService.get(key: LocalKeysConstants.tUserId);
+    final userId = await secureStorageService.get(key: ApiConstants.tUser);
 
     final json = await db.collection(ApiConstants.tUser).doc(userId).get();
 

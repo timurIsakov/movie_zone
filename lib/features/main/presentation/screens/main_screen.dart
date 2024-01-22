@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie_zone/core/utils/assets.dart';
-import 'package:navigator_scope/navigator_scope.dart';
 
 import '../../../../core/widgets/blur_container.dart';
-import '../../domain/entities/movie_entity.dart';
 import 'home_screen.dart';
 import 'library_screen.dart';
-import 'movie_details_screen.dart';
 import 'profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -33,20 +30,12 @@ class _MainScreenState extends State<MainScreen> {
     const LibraryScreen(),
     // MovieDetailsScreen(),
     const ProfileScreen(),
+    // const AccountSettings(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      body: NavigatorScope(
-        currentDestination: currentIndex,
-        destinationCount: screens.length,
-        destinationBuilder: (context, index) {
-          return NestedNavigator(
-            builder: (context) => screens[index],
-          );
-        },
-      ),
+      body: screens[currentIndex],
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8).r,

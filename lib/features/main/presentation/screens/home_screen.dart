@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/widgets/category_switcher_widget.dart';
 import 'package:movie_zone/features/main/domain/entities/category_entity.dart';
-import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
+
 import 'package:movie_zone/features/main/presentation/widgets/brand_widget.dart';
 
 import '../widgets/scroll_panel_widget.dart';
@@ -43,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  initialize() {
-  }
+  initialize() {}
 
   @override
   Widget build(BuildContext context) {

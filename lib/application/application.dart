@@ -6,8 +6,8 @@ import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
 import 'package:movie_zone/get_it/locator.dart';
 
-import '../core/api/constants/local_keys_constants.dart';
 import '../core/services/secure_storage_service.dart';
+import '../core/services/storage_keys.dart';
 import '../features/auth/presentation/cubit/auth/auth_cubit.dart';
 import '../features/auth/presentation/cubit/session/session_cubit.dart';
 import '../features/main/presentation/screens/main_screen.dart';
@@ -37,9 +37,10 @@ class _ApplicationState extends State<Application> {
 
   initialize() async {
     await secureStorageService.save(
-        key: LocalKeysConstants.token,
-        value:
-            "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhiYjdlNjcxZGI5MDk4YzkyODIwNzI2YzFlMzNmMyIsInN1YiI6IjY1OTI5OTU5NjUxZmNmNWYxMzhlYjg3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pdqI_L93K4mexvxfX3KxhY43wEH6bCybCYHhuR1PaOw");
+      key: StorageKeys.token,
+      value:
+          "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhiYjdlNjcxZGI5MDk4YzkyODIwNzI2YzFlMzNmMyIsInN1YiI6IjY1OTI5OTU5NjUxZmNmNWYxMzhlYjg3MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pdqI_L93K4mexvxfX3KxhY43wEH6bCybCYHhuR1PaOw",
+    );
   }
 
   @override
@@ -76,7 +77,6 @@ class _ApplicationState extends State<Application> {
             theme: ThemeData(
               scaffoldBackgroundColor: const Color(0xff0F1111),
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
             ),
             home: child,
           );

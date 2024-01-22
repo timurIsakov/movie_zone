@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_zone/core/entities/no_params.dart';
 
 import '../../../domain/usecases/auth_usecase.dart';
 
@@ -7,8 +8,10 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   final LoginUseCase loginUseCase;
   final RegisterUseCase registerUseCase;
+  final LogOutUseCase logOutUseCase;
 
-  AuthCubit(this.loginUseCase, this.registerUseCase) : super(AuthInitial());
+  AuthCubit(this.loginUseCase, this.registerUseCase, this.logOutUseCase)
+      : super(AuthInitial());
 
   signIn({required String email, required String password}) async {
     emit(AuthLoading());
@@ -30,4 +33,6 @@ class AuthCubit extends Cubit<AuthState> {
     data.fold((l) => emit(AuthSignUpError(message: l.errorMessage)),
         (r) => emit(AuthSignUpSuccess()));
   }
+
+  logOut() async => await logOutUseCase.call(NoParams());
 }

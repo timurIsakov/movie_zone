@@ -49,6 +49,10 @@
   "inputName": "Enter your name",
   "signUpPartOneDescriptionTwo": "By loging in or signing up you agree to Foodlam’s Terms and Condition & Privacy Policies",
   "createYourPassword": "Create your password",
-  "signUpPartThreeDescriptionOne": "Create your password to continue to create to your account"
+  "signUpPartThreeDescriptionOne": "Create your password to continue to create to your account",
+  "account": "Account",
+  "fullName": "Full name",
+  "emailAddress" : "Email address",
+  "password" : "Password"
 
 }

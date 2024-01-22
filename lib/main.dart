@@ -14,6 +14,7 @@ void main() async {
   );
 
   await EasyLocalization.ensureInitialized();
+
   setup();
   runApp(
     EasyLocalization(

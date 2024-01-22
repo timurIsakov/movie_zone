@@ -1,5 +1,5 @@
 import 'package:movie_zone/core/api/api_client.dart';
-import 'package:movie_zone/core/api/constants/api_constants.dart';
+import 'package:movie_zone/core/api/api_constants.dart';
 import 'package:movie_zone/features/auth/data/models/user_model.dart';
 
 import '../../../../core/api/firebase_api.dart';

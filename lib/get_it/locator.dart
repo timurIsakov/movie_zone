@@ -31,7 +31,7 @@ void setup() {
   locator.registerSingleton<FirebaseApi>(FirebaseApi(locator()));
 
   //----------------------Cubits----------------------------//
-  locator.registerFactory(() => AuthCubit(locator(), locator()));
+  locator.registerFactory(() => AuthCubit(locator(), locator(), locator()));
   locator.registerLazySingleton<SessionCubit>(() => SessionCubit(locator()));
   locator.registerLazySingleton<ProfileCubit>(() => ProfileCubit(locator()));
   //----------------------Repository-----------------------//
@@ -54,4 +54,5 @@ void setup() {
   locator.registerLazySingleton<CheckActiveSession>(
       () => CheckActiveSession(locator()));
   locator.registerLazySingleton(() => UserUseCase(locator()));
+  locator.registerLazySingleton<LogOutUseCase>(() => LogOutUseCase(locator()));
 }

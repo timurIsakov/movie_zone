@@ -7,7 +7,7 @@ class SecureStorageService {
     await storage.write(key: key, value: value);
   }
 
-  Future<dynamic> get({required String key}) async {
+  Future<dynamic>? get({required String key}) async {
     final data = await storage.read(key: key);
     return data;
   }

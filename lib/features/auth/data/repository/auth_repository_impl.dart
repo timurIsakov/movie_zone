@@ -53,4 +53,10 @@ class AuthRepositoryImpl implements AuthRepository {
       );
     }
   }
+
+  @override
+  Future<Either<AppError, void>> logOut() async {
+    await localDataSource.logOut();
+    return const Right(null);
+  }
 }
