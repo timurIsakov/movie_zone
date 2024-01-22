@@ -7,7 +7,7 @@ import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/utils/form_validator.dart';
 import 'package:movie_zone/core/widgets/button_widget.dart';
 import 'package:movie_zone/core/widgets/error_flash_bar.dart';
-import 'package:movie_zone/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:movie_zone/features/auth/presentation/cubit/auth/auth_cubit.dart';
 import 'package:movie_zone/features/main/presentation/screens/main_screen.dart';
 
 import '../../../../core/widgets/input_widget.dart';

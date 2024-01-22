@@ -8,19 +8,28 @@ import '../services/secure_storage_service.dart';
 import 'constants/api_constants.dart';
 
 class FirebaseApi {
-  final SecureStorageService localDb = SecureStorageService();
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore db = FirebaseFirestore.instance;
+  final SecureStorageService secureStorageService;
+
+  FirebaseApi(this.secureStorageService);
 
   Future<bool> signIn({required String email, required String password}) async {
-    await auth.signInWithEmailAndPassword(email: email, password: password);
+    final credential =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+    final userId = credential.user?.uid ?? '';
+
+    await secureStorageService.save(
+        key: LocalKeysConstants.tUserId, value: userId);
+
     return true;
   }
 
-  Future<bool> signUp(
-      {required String email,
-      required String password,
-      required String name}) async {
+  Future<bool> signUp({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
     final credential = await auth.createUserWithEmailAndPassword(
         email: email, password: password);
     final userId = credential.user?.uid ?? '';
@@ -33,12 +42,14 @@ class FirebaseApi {
                 email: email,
                 password: password,
                 movies: const [])).toJson());
-    localDb.save(key: LocalKeysConstants.tUserId, value: userId);
+    await secureStorageService.save(
+        key: LocalKeysConstants.tUserId, value: userId);
     return true;
   }
 
   Future<UserModel> getCurrentUser() async {
-    final userId = await localDb.get(key: LocalKeysConstants.tUserId);
+    final userId =
+        await secureStorageService.get(key: LocalKeysConstants.tUserId);
 
     final json = await db.collection(ApiConstants.tUser).doc(userId).get();
 

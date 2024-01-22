@@ -24,9 +24,8 @@ class UserModel extends UserEntity {
       name: json["name"],
       email: json["email"],
       password: json["password"],
-      movies: List.from(json['movies'])
-          .map((e) => MovieModel.fromJson(json: e))
-          .toList(),
+      movies:
+          List.from(json['movies']).map((e) => MovieModel.fromJson(e)).toList(),
     );
   }
 
@@ -37,7 +36,7 @@ class UserModel extends UserEntity {
     json["email"] = email;
     json["password"] = password;
     json["movies"] = List.from(movies)
-        .map((e) => MovieModel.fromEntity(entity: e).toJson())
+        .map((e) => MovieModel.fromEntity(e).toJson())
         .toList();
 
     return json;

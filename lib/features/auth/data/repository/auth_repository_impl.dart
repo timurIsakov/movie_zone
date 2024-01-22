@@ -3,10 +3,13 @@ import 'package:movie_zone/core/entities/app_error.dart';
 import 'package:movie_zone/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:movie_zone/features/auth/domain/repository/auth_repository.dart';
 
+import '../datasources/auth_local_data_source.dart';
+
 class AuthRepositoryImpl implements AuthRepository {
+  final AuthLocalDataSource localDataSource;
   final AuthRemoteDataSources authRemoteDataSources;
 
-  AuthRepositoryImpl(this.authRemoteDataSources);
+  AuthRepositoryImpl(this.authRemoteDataSources, this.localDataSource);
 
   @override
   Future<Either<AppError, bool>> signIn(
@@ -33,6 +36,21 @@ class AuthRepositoryImpl implements AuthRepository {
     } catch (error) {
       return Left(AppError(
           appErrorType: AppErrorType.api, errorMessage: error.toString()));
+    }
+  }
+
+  @override
+  Future<Either<AppError, bool>> checkActiveSession() async {
+    try {
+      final response = await localDataSource.checkActiveSession();
+      return Right(response);
+    } catch (error) {
+      return Left(
+        AppError(
+          appErrorType: AppErrorType.api,
+          errorMessage: error.toString(),
+        ),
+      );
     }
   }
 }

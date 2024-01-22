@@ -41,7 +41,9 @@ class MovieCardWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  movieEntity.time,
+                  "test",
+
+                  //movieEntity.time,
                   style: TextStyle(
                     color: const Color(0xFFB9BFC1),
                     fontSize: 14.sp,
@@ -51,7 +53,9 @@ class MovieCardWidget extends StatelessWidget {
                 ),
                 SizedBox(width: 12.w),
                 Text(
-                  "${movieEntity.createdAt.day}/${movieEntity.createdAt.month}/${movieEntity.createdAt.year}",
+                  "test",
+
+                  // "${movieEntity.createdAt.day}/${movieEntity.createdAt.month}/${movieEntity.createdAt.year}",
                   style: TextStyle(
                     color: const Color(0xFFB9BFC1),
                     fontSize: 14.sp,

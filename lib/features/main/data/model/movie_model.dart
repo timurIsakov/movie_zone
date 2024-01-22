@@ -1,43 +1,43 @@
-import 'package:movie_zone/features/main/domain/entities/movie_entity.dart';
+import '../../domain/entities/movie_entity.dart';
 
 class MovieModel extends MovieEntity {
-  const MovieModel(
-      {required super.title,
-      required super.description,
-      required super.time,
-      required super.imageUrl,
-      required super.createdAt,
-      required super.overall});
+  const MovieModel({
+    required super.title,
+    required super.imageUrl,
+    required super.releaseDate,
+    required super.overall,
+    required super.id,
+  });
 
-  factory MovieModel.fromEntity({required MovieEntity entity}) {
+  factory MovieModel.fromEntity(MovieEntity entity) {
     return MovieModel(
-        title: entity.title,
-        description: entity.description,
-        time: entity.time,
-        imageUrl: entity.imageUrl,
-        createdAt: entity.createdAt,
-        overall: entity.overall);
+      title: entity.title,
+      id: entity.id,
+      imageUrl: entity.imageUrl,
+      releaseDate: entity.releaseDate,
+      overall: entity.overall,
+    );
   }
 
-  factory MovieModel.fromJson({required Map<String, dynamic> json}) {
+  factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
-        title: json["title"],
-        description: json["description"],
-        time: json["time"],
-        imageUrl: json["imageUrl"],
-        createdAt: json["createdAt"],
-        overall: json["overall"]);
+      title: json['title'],
+      id: json['id'],
+      imageUrl: json['backdrop_path'],
+      releaseDate: json['release_date'],
+      overall: json['vote_count'],
+    );
   }
 
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> json = {};
-    json["title"] = title;
-    json["description"] = description;
-    json["time"] = time;
-    json["imageUrl"] = imageUrl;
-    json["createdAt"] = createdAt;
-    json["overall"] = overall;
+    final Map<String, dynamic> data = {};
 
-    return json;
+    data["title"] = title;
+    data["id"] = id;
+    data["backdrop_path"] = imageUrl;
+    data["release_date"] = releaseDate;
+    data["overall"] = overall;
+
+    return data;
   }
 }

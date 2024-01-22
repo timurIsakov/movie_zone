@@ -122,7 +122,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     height: 24.h,
                   ),
                   Text(
-                    widget.movieEntity.description,
+                    "test",
+                    // widget.movieEntity.description,
                     style: TextStyle(
                       fontFamily: "SfProDisplay",
                       fontWeight: FontWeight.w500,

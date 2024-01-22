@@ -6,4 +6,5 @@ abstract class AuthRepository {
       {required String email, required String password});
   Future<Either<AppError, bool>> signUp(
       {required String email, required String password, required String name});
+  Future<Either<AppError, bool>> checkActiveSession();
 }

@@ -3,6 +3,7 @@ import 'package:movie_zone/core/services/secure_storage_service.dart';
 abstract class AuthLocalDataSource {
   Future<String?> getSessionId();
   Future<void> saveSessionId({required String token});
+  Future<bool> checkActiveSession();
 }
 
 class AuthLocalDataSourceImpl extends AuthLocalDataSource {
@@ -17,6 +18,16 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
 
   @override
   Future<void> saveSessionId({required String token}) async {
-    storage.save(key: 'token', value: token);
+    await storage.save(key: 'token', value: token);
+  }
+
+  @override
+  Future<bool> checkActiveSession() async {
+    final response = await storage.get(key: "token");
+
+    if (response == null) {
+      return false;
+    }
+    return true;
   }
 }
