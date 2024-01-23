@@ -21,7 +21,7 @@ class ApiClientImpl extends ApiClient {
 
   @override
   Future get(String path, Map<String, dynamic> params) async {
-    String? token = await localDataSource.getSessionId();
+    String? token = await localDataSource.getToken();
 
     final Map<String, String> header = {
       "Authorization": "Bearer $token",
@@ -85,12 +85,13 @@ class ApiClientImpl extends ApiClient {
   }
 
   _errorHandler(Response response) {
+    print(
+        "Response status code ${response.statusCode} ${response.request?.url} ${response.request?.headers.toString()}");
     if (response.statusCode == 200) {
       return json.decode(utf8.decode(response.bodyBytes));
     } else if (response.statusCode == 400 || response.statusCode == 404) {
       String msg = "unknown_error";
       var resp = jsonDecode(utf8.decode(response.bodyBytes));
-
       if (resp.containsKey("error")) {
         msg = resp["error"];
       } else if (resp.containsKey("message")) {

@@ -6,6 +6,7 @@ import 'package:movie_zone/features/auth/presentation/cubit/session/session_cubi
 import 'package:movie_zone/features/main/data/datasources/main_remote_data_source.dart';
 import 'package:movie_zone/features/main/data/repository/main_repository_impl.dart';
 import 'package:movie_zone/features/main/domain/repository/main_repository.dart';
+import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
 
 import '../core/api/api_client.dart';
@@ -34,6 +35,8 @@ void setup() {
   locator.registerFactory(() => AuthCubit(locator(), locator(), locator()));
   locator.registerLazySingleton<SessionCubit>(() => SessionCubit(locator()));
   locator.registerLazySingleton<ProfileCubit>(() => ProfileCubit(locator()));
+  locator.registerLazySingleton<MoviesCubit>(() => MoviesCubit(locator()));
+
   //----------------------Repository-----------------------//
   locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(locator(), locator()));
@@ -55,4 +58,5 @@ void setup() {
       () => CheckActiveSession(locator()));
   locator.registerLazySingleton(() => UserUseCase(locator()));
   locator.registerLazySingleton<LogOutUseCase>(() => LogOutUseCase(locator()));
+  locator.registerLazySingleton<MovieUseCase>(() => MovieUseCase(locator()));
 }

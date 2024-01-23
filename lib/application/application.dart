@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen.dart';
+import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
 import 'package:movie_zone/get_it/locator.dart';
 
@@ -24,6 +25,7 @@ class _ApplicationState extends State<Application> {
   late SessionCubit sessionCubit;
   late SecureStorageService secureStorageService;
   late ProfileCubit profileCubit;
+  late MoviesCubit moviesCubit;
 
   @override
   void initState() {
@@ -31,6 +33,7 @@ class _ApplicationState extends State<Application> {
     sessionCubit = locator();
     secureStorageService = locator();
     profileCubit = locator();
+    moviesCubit = locator();
     initialize();
     super.initState();
   }
@@ -50,6 +53,7 @@ class _ApplicationState extends State<Application> {
         BlocProvider.value(value: authCubit),
         BlocProvider.value(value: sessionCubit..checkSession()),
         BlocProvider.value(value: profileCubit),
+        BlocProvider.value(value: moviesCubit),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

@@ -19,6 +19,7 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
   Future<MovieResultsModel> getMovie() async {
     final response = await client.get(ApiConstants.movies, {});
     final model = MovieResultsModel.fromJson(response);
+    print(model.movies.length);
 
     return model;
   }
