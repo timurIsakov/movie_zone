@@ -9,6 +9,7 @@ import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/widgets/category_switcher_widget.dart';
 import 'package:movie_zone/features/main/domain/entities/category_entity.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
+import 'package:movie_zone/features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
 
 import 'package:movie_zone/features/main/presentation/widgets/brand_widget.dart';
 
@@ -50,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   initialize() {
     BlocProvider.of<MoviesCubit>(context).load();
+    BlocProvider.of<PopularMoviesCubit>(context).load();
   }
 
   @override
@@ -122,9 +124,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ScrollPanelWidget(
-                      title: 'popularMovies'.tr(),
-                      movieEntities: const [],
+                    BlocBuilder<PopularMoviesCubit, PopularMoviesState>(
+                      builder: (context, state) {
+                        if (state is PopularMoviesLoaded) {
+                          return ScrollPanelWidget(
+                            title: 'popularMovies'.tr(),
+                            movieEntities: state.movies.movies,
+                          );
+                        }
+                        return const Center(
+                          child: RefreshProgressIndicator(),
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 32.h,

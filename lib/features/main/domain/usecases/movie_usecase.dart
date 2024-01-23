@@ -27,3 +27,14 @@ class UserUseCase extends UseCase<UserEntity, NoParams> {
     return mainRepository.getCurrentUser();
   }
 }
+
+class GetPopularMovieUsecase extends UseCase<MovieResultsEntity, NoParams> {
+  final MainRepository mainRepository;
+
+  GetPopularMovieUsecase(this.mainRepository);
+
+  @override
+  Future<Either<AppError, MovieResultsEntity>> call(NoParams params) {
+    return mainRepository.getPopularMovies();
+  }
+}

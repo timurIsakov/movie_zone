@@ -7,4 +7,5 @@ import '../../../../core/entities/app_error.dart';
 abstract class MainRepository {
   Future<Either<AppError, MovieResultsEntity>> getMovie();
   Future<Either<AppError, UserEntity>> getCurrentUser();
+  Future<Either<AppError, MovieResultsEntity>> getPopularMovies();
 }

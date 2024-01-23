@@ -7,6 +7,7 @@ import 'package:movie_zone/features/main/data/datasources/main_remote_data_sourc
 import 'package:movie_zone/features/main/data/repository/main_repository_impl.dart';
 import 'package:movie_zone/features/main/domain/repository/main_repository.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
+import 'package:movie_zone/features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
 
 import '../core/api/api_client.dart';
@@ -36,6 +37,8 @@ void setup() {
   locator.registerLazySingleton<SessionCubit>(() => SessionCubit(locator()));
   locator.registerLazySingleton<ProfileCubit>(() => ProfileCubit(locator()));
   locator.registerLazySingleton<MoviesCubit>(() => MoviesCubit(locator()));
+  locator.registerLazySingleton<PopularMoviesCubit>(
+      () => PopularMoviesCubit(locator()));
 
   //----------------------Repository-----------------------//
   locator.registerLazySingleton<AuthRepository>(
@@ -59,4 +62,5 @@ void setup() {
   locator.registerLazySingleton(() => UserUseCase(locator()));
   locator.registerLazySingleton<LogOutUseCase>(() => LogOutUseCase(locator()));
   locator.registerLazySingleton<MovieUseCase>(() => MovieUseCase(locator()));
+  locator.registerLazySingleton(() => GetPopularMovieUsecase(locator()));
 }

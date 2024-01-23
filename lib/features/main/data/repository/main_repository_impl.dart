@@ -32,4 +32,16 @@ class MainRepositoryImpl extends MainRepository {
           appErrorType: AppErrorType.api, errorMessage: error.toString()));
     }
   }
+
+  @override
+  Future<Either<AppError, MovieResultsEntity>> getPopularMovies() async {
+    try {
+      final response = await mainRemoteDataSource.getPopularMovies();
+
+      return Right(response);
+    } catch (error) {
+      return Left(AppError(
+          appErrorType: AppErrorType.api, errorMessage: error.toString()));
+    }
+  }
 }

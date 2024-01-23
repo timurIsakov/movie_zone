@@ -11,6 +11,7 @@ import '../core/services/secure_storage_service.dart';
 import '../core/services/storage_keys.dart';
 import '../features/auth/presentation/cubit/auth/auth_cubit.dart';
 import '../features/auth/presentation/cubit/session/session_cubit.dart';
+import '../features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
 import '../features/main/presentation/screens/main_screen.dart';
 
 class Application extends StatefulWidget {
@@ -26,6 +27,7 @@ class _ApplicationState extends State<Application> {
   late SecureStorageService secureStorageService;
   late ProfileCubit profileCubit;
   late MoviesCubit moviesCubit;
+  late PopularMoviesCubit popularMovies;
 
   @override
   void initState() {
@@ -34,6 +36,7 @@ class _ApplicationState extends State<Application> {
     secureStorageService = locator();
     profileCubit = locator();
     moviesCubit = locator();
+    popularMovies = locator();
     initialize();
     super.initState();
   }
@@ -54,6 +57,7 @@ class _ApplicationState extends State<Application> {
         BlocProvider.value(value: sessionCubit..checkSession()),
         BlocProvider.value(value: profileCubit),
         BlocProvider.value(value: moviesCubit),
+        BlocProvider.value(value: popularMovies),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

@@ -8,6 +8,7 @@ import '../model/movie_result_model.dart';
 abstract class MainRemoteDataSource {
   Future<MovieResultsModel> getMovie();
   Future<UserModel> getCurrentUser();
+  Future<MovieResultsModel> getPopularMovies();
 }
 
 class MainRemoteDataSourceImpl extends MainRemoteDataSource {
@@ -19,7 +20,6 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
   Future<MovieResultsModel> getMovie() async {
     final response = await client.get(ApiConstants.movies, {});
     final model = MovieResultsModel.fromJson(response);
-    print(model.movies.length);
 
     return model;
   }
@@ -29,5 +29,13 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
     final response = await firebaseApi.getCurrentUser();
 
     return response;
+  }
+
+  @override
+  Future<MovieResultsModel> getPopularMovies() async {
+    final response = await client.get(ApiConstants.popularMovies, {});
+    final model = MovieResultsModel.fromJson(response);
+
+    return model;
   }
 }

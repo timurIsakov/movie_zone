@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/api/api_constants.dart';
 import '../../domain/entities/movie_entity.dart';
 import 'poster_widget.dart';
 
@@ -44,18 +45,18 @@ class ScrollPanelWidget extends StatelessWidget {
         SizedBox(
           height: 200.h,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: 10,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(right: 12).r,
-              child: const PosterWidget(
-                hasNewEpisodes: true,
-                imageUrl:
-                    "https://i.pinimg.com/564x/6c/8c/42/6c8c42d7cfbe0afb3d029c42e3054ced.jpg",
-              ),
-            ),
-          ),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: movieEntities.length,
+              itemBuilder: (context, index) {
+                final movie = movieEntities[index];
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12).r,
+                  child: PosterWidget(
+                    imageUrl: "${ApiConstants.imageApiUrl}${movie.imageUrl}",
+                  ),
+                );
+              }),
         ),
       ],
     );
