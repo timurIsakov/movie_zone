@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
+import 'package:movie_zone/features/main/presentation/cubit/tv_series/tv_series_cubit.dart';
 import 'package:movie_zone/get_it/locator.dart';
 
 import '../core/services/secure_storage_service.dart';
@@ -28,6 +29,7 @@ class _ApplicationState extends State<Application> {
   late ProfileCubit profileCubit;
   late MoviesCubit moviesCubit;
   late PopularMoviesCubit popularMovies;
+  late TvSeriesCubit tvSeriesCubit;
 
   @override
   void initState() {
@@ -37,6 +39,7 @@ class _ApplicationState extends State<Application> {
     profileCubit = locator();
     moviesCubit = locator();
     popularMovies = locator();
+    tvSeriesCubit = locator();
     initialize();
     super.initState();
   }
@@ -58,6 +61,7 @@ class _ApplicationState extends State<Application> {
         BlocProvider.value(value: profileCubit),
         BlocProvider.value(value: moviesCubit),
         BlocProvider.value(value: popularMovies),
+        BlocProvider.value(value: tvSeriesCubit),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

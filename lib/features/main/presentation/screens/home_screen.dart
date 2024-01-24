@@ -10,8 +10,10 @@ import 'package:movie_zone/core/widgets/category_switcher_widget.dart';
 import 'package:movie_zone/features/main/domain/entities/category_entity.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
+import 'package:movie_zone/features/main/presentation/cubit/tv_series/tv_series_cubit.dart';
 
 import 'package:movie_zone/features/main/presentation/widgets/brand_widget.dart';
+import 'package:movie_zone/features/main/presentation/widgets/tv_view_widget.dart';
 
 import '../../../../core/api/api_constants.dart';
 import '../widgets/scroll_panel_widget.dart';
@@ -52,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   initialize() {
     BlocProvider.of<MoviesCubit>(context).load();
     BlocProvider.of<PopularMoviesCubit>(context).load();
+    BlocProvider.of<TvSeriesCubit>(context).load();
   }
 
   @override
@@ -140,51 +143,59 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(
                       height: 32.h,
                     ),
-                    ScrollPanelWidget(
-                      title: 'tvSeries'.tr(),
-                      movieEntities: const [],
+                    BlocBuilder<TvSeriesCubit, TvSeriesState>(
+                      builder: (context, state) {
+                        if (state is TvSeriesLoaded) {
+                          final movie = state.movies.series;
+                          return TvViewWidget(
+                              title: 'tvSeries'.tr(), tvEntity: movie);
+                        }
+                        return const Center(
+                          child: RefreshProgressIndicator(),
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 32.h,
                     ),
-                    Text(
-                      "brands".tr(),
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "SfProDisplay",
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    SizedBox(
-                      height: 82.h,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: 5,
-                        itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(right: 12).r,
-                          child: BrandWidget(
-                            imageUrl:
-                                "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
-                            onTap: (p0) {
-                              AnimatedNavigation.push(
-                                context: context,
-                                page: const BrandScreen(
-                                  logoUrl:
-                                      "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
-                                ),
-                              );
-                            },
-                            fullLogoUrl:
-                                "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Text(
+                    //   "brands".tr(),
+                    //   style: TextStyle(
+                    //     color: Colors.white,
+                    //     fontSize: 24.sp,
+                    //     fontWeight: FontWeight.w700,
+                    //     fontFamily: "SfProDisplay",
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 20.h,
+                    // ),
+                    // SizedBox(
+                    //   height: 82.h,
+                    //   child: ListView.builder(
+                    //     scrollDirection: Axis.horizontal,
+                    //     shrinkWrap: true,
+                    //     itemCount: 5,
+                    //     itemBuilder: (context, index) => Padding(
+                    //       padding: const EdgeInsets.only(right: 12).r,
+                    //       child: BrandWidget(
+                    //         imageUrl:
+                    //             "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
+                    //         onTap: (p0) {
+                    //           AnimatedNavigation.push(
+                    //             context: context,
+                    //             page: const BrandScreen(
+                    //               logoUrl:
+                    //                   "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
+                    //             ),
+                    //           );
+                    //         },
+                    //         fullLogoUrl:
+                    //             "https://i.pinimg.com/564x/6e/44/d8/6e44d8091bbce3113a6b5ea1af6b7bff.jpg",
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 32.h,
                     ),

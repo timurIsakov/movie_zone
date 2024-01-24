@@ -6,9 +6,11 @@ import 'package:movie_zone/features/auth/presentation/cubit/session/session_cubi
 import 'package:movie_zone/features/main/data/datasources/main_remote_data_source.dart';
 import 'package:movie_zone/features/main/data/repository/main_repository_impl.dart';
 import 'package:movie_zone/features/main/domain/repository/main_repository.dart';
+import 'package:movie_zone/features/main/domain/usecases/tv_usecase.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
+import 'package:movie_zone/features/main/presentation/cubit/tv_series/tv_series_cubit.dart';
 
 import '../core/api/api_client.dart';
 import '../core/services/secure_storage_service.dart';
@@ -40,6 +42,8 @@ void setup() {
   locator.registerLazySingleton<PopularMoviesCubit>(
       () => PopularMoviesCubit(locator()));
 
+  locator.registerLazySingleton<TvSeriesCubit>(() => TvSeriesCubit(locator()));
+
   //----------------------Repository-----------------------//
   locator.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(locator(), locator()));
@@ -63,4 +67,5 @@ void setup() {
   locator.registerLazySingleton<LogOutUseCase>(() => LogOutUseCase(locator()));
   locator.registerLazySingleton<MovieUseCase>(() => MovieUseCase(locator()));
   locator.registerLazySingleton(() => GetPopularMovieUsecase(locator()));
+  locator.registerLazySingleton<GetTvUseCase>(() => GetTvUseCase(locator()));
 }

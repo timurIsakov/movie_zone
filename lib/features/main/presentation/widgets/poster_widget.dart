@@ -19,33 +19,6 @@ class PosterWidget extends StatelessWidget {
         image:
             DecorationImage(image: NetworkImage(imageUrl), fit: BoxFit.cover),
       ),
-      // child: Stack(
-      //   children: [
-      //     if (hasNewEpisodes)
-      //       Positioned(
-      //         top: 8,
-      //         left: 8,
-      //         child: Container(
-      //             decoration: BoxDecoration(
-      //                 borderRadius: BorderRadius.circular(12).r,
-      //                 color: const Color(0xffEEEFF0)),
-      //             child: Padding(
-      //               padding:
-      //                   const EdgeInsets.symmetric(horizontal: 12, vertical: 5)
-      //                       .r,
-      //               child: Text(
-      //                 "newEpisode".tr(),
-      //                 style: TextStyle(
-      //                   fontFamily: "SfProDisplay",
-      //                   fontWeight: FontWeight.w500,
-      //                   fontSize: 12.sp,
-      //                   color: Colors.black,
-      //                 ),
-      //               ),
-      //             )),
-      //       )
-      //   ],
-      // ),
     );
   }
 }
