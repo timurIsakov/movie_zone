@@ -32,7 +32,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
     const entity = MovieEntity(
-        id: 1, title: "", imageUrl: '', releaseDate: '', overall: 1);
+        id: 1,
+        title: "",
+        imageUrl: 'https://th.wallhaven.cc/lg/6d/6d7xmx.jpg',
+        releaseDate: '',
+        overall: 1);
     return Scaffold(
       body: SafeArea(
         child: Padding(

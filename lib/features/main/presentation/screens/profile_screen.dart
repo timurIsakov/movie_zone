@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_zone/core/utils/animated_navigation.dart';
+import 'package:movie_zone/core/widgets/loading_widget.dart';
 import 'package:movie_zone/features/auth/presentation/cubit/auth/auth_cubit.dart';
 import 'package:movie_zone/features/auth/presentation/screens/on_boarding_screen.dart';
 import 'package:movie_zone/features/main/presentation/cubit/profile/profile_cubit.dart';
+import 'package:movie_zone/features/main/presentation/screens/account_settings.dart';
 
 import '../widgets/profile_item_widget.dart';
 import '../widgets/profile_user_widget.dart';
@@ -33,58 +35,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       body: ListView(
         physics: const ClampingScrollPhysics(),
-        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 52.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: BlocBuilder<ProfileCubit, ProfileState>(
-              builder: (BuildContext context, ProfileState state) {
+              builder: (context, state) {
                 if (state is ProfileLoading) {
-                  return const Center(child: RefreshProgressIndicator());
+                  return const LoadingWidget(
+                    size: 120,
+                  );
                 }
                 if (state is ProfileLoaded) {
                   return ProfileUserWidget(
-                      user: state.userEntity, onTap: () {});
+                    user: state.userEntity,
+                    onTap: () {
+                      AnimatedNavigation.push(
+                          context: context,
+                          page: AccountSettings(
+                            userEntity: state.userEntity,
+                          ));
+                    },
+                  );
                 }
+
                 return const SizedBox();
               },
             ),
           ),
           SizedBox(height: 52.h),
-          _categoryWidget("settings"),
+          _categoryWidget("Settings"),
           ProfileItemWidget(
-            title: 'language',
+            title: 'Language',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'notification',
+            title: 'Notification',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'manageDownload',
+            title: 'Manage Download',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'manageDevices',
+            title: 'Manage Devices',
             onTap: () {},
           ),
           SizedBox(height: 28.h),
           _categoryWidget("Others"),
           ProfileItemWidget(
-            title: 'history',
+            title: 'History',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'privacyPolicy',
+            title: 'Privacy Policy',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'helpCenter',
+            title: 'Help Center',
             onTap: () {},
           ),
           ProfileItemWidget(
-            title: 'ratings',
+            title: 'Ratings',
             onTap: () {},
           ),
           SizedBox(height: 28.h),
@@ -123,7 +135,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Text(
         title.tr(),
         style: const TextStyle(
-          color: Color(0xFFEEEFF0),
+          color: Color(0xffB9BFC1),
           fontSize: 16,
           fontFamily: 'SF Pro Display',
           fontWeight: FontWeight.w500,

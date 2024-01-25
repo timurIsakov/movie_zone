@@ -57,4 +57,16 @@ class MainRepositoryImpl extends MainRepository {
           appErrorType: AppErrorType.api, errorMessage: error.toString()));
     }
   }
+
+  @override
+  Future<Either<AppError, void>> updateCurrentUser(
+      UserEntity userEntity) async {
+    try {
+      final response = await mainRemoteDataSource.updateCurrentUser(userEntity);
+      return Right(response);
+    } catch (error) {
+      return Left(AppError(
+          appErrorType: AppErrorType.api, errorMessage: error.toString()));
+    }
+  }
 }

@@ -10,4 +10,5 @@ abstract class MainRepository {
   Future<Either<AppError, UserEntity>> getCurrentUser();
   Future<Either<AppError, MovieResultsEntity>> getPopularMovies();
   Future<Either<AppError, TvResultEntity>> getTvSeries();
+  Future<Either<AppError, void>> updateCurrentUser(UserEntity userEntity);
 }

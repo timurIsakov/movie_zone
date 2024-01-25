@@ -1,15 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../main/domain/entities/movie_entity.dart';
 
+@immutable
 class UserEntity extends Equatable {
   final String id;
-  final String name;
+  late String name;
   final String email;
   final String password;
   final List<MovieEntity> movies;
 
-  const UserEntity({
+  UserEntity({
     required this.id,
     required this.name,
     required this.email,

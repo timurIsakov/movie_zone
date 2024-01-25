@@ -22,6 +22,8 @@ import '../features/auth/presentation/cubit/auth/auth_cubit.dart';
 import '../features/main/domain/usecases/movie_usecase.dart';
 import 'package:http/http.dart' as http;
 
+import '../features/main/domain/usecases/update_user_usecase.dart';
+
 final locator = GetIt.I;
 
 void setup() {
@@ -37,7 +39,8 @@ void setup() {
   //----------------------Cubits----------------------------//
   locator.registerFactory(() => AuthCubit(locator(), locator(), locator()));
   locator.registerLazySingleton<SessionCubit>(() => SessionCubit(locator()));
-  locator.registerLazySingleton<ProfileCubit>(() => ProfileCubit(locator()));
+  locator.registerLazySingleton<ProfileCubit>(
+      () => ProfileCubit(locator(), locator()));
   locator.registerLazySingleton<MoviesCubit>(() => MoviesCubit(locator()));
   locator.registerLazySingleton<PopularMoviesCubit>(
       () => PopularMoviesCubit(locator()));
@@ -68,4 +71,6 @@ void setup() {
   locator.registerLazySingleton<MovieUseCase>(() => MovieUseCase(locator()));
   locator.registerLazySingleton(() => GetPopularMovieUsecase(locator()));
   locator.registerLazySingleton<GetTvUseCase>(() => GetTvUseCase(locator()));
+  locator.registerLazySingleton<UpdateUserUseCase>(
+      () => UpdateUserUseCase(locator()));
 }

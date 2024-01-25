@@ -1,6 +1,7 @@
 import 'package:movie_zone/core/api/api_client.dart';
 import 'package:movie_zone/core/api/api_constants.dart';
 import 'package:movie_zone/features/auth/data/models/user_model.dart';
+import 'package:movie_zone/features/auth/domain/entities/user_entity.dart';
 import 'package:movie_zone/features/main/data/model/tv_result_model.dart';
 
 import '../../../../core/api/firebase_api.dart';
@@ -11,6 +12,7 @@ abstract class MainRemoteDataSource {
   Future<UserModel> getCurrentUser();
   Future<MovieResultsModel> getPopularMovies();
   Future<TvResultModel> getTvSeries();
+  Future<void> updateCurrentUser(UserEntity userEntity);
 }
 
 class MainRemoteDataSourceImpl extends MainRemoteDataSource {
@@ -47,5 +49,10 @@ class MainRemoteDataSourceImpl extends MainRemoteDataSource {
 
     final model = TvResultModel.fromJson(json: response);
     return model;
+  }
+
+  @override
+  Future<void> updateCurrentUser(UserEntity userEntity) async {
+    await firebaseApi.updateCurrentUser(userEntity);
   }
 }

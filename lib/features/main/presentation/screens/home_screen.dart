@@ -5,19 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_zone/core/utils/animated_navigation.dart';
 import 'package:movie_zone/core/widgets/category_switcher_widget.dart';
+import 'package:movie_zone/core/widgets/loading_widget.dart';
 import 'package:movie_zone/features/main/domain/entities/category_entity.dart';
 import 'package:movie_zone/features/main/presentation/cubit/movies/movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/popular_movies/popular_movies_cubit.dart';
 import 'package:movie_zone/features/main/presentation/cubit/tv_series/tv_series_cubit.dart';
 
-import 'package:movie_zone/features/main/presentation/widgets/brand_widget.dart';
 import 'package:movie_zone/features/main/presentation/widgets/tv_view_widget.dart';
 
 import '../../../../core/api/api_constants.dart';
 import '../widgets/scroll_panel_widget.dart';
-import 'brand_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -114,9 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     );
                   }
-                  return const Center(
-                    child: RefreshProgressIndicator(),
-                  );
+                  return const LoadingWidget(size: 100);
                 },
               ),
               SizedBox(
@@ -135,9 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             movieEntities: state.movies.movies,
                           );
                         }
-                        return const Center(
-                          child: RefreshProgressIndicator(),
-                        );
+                        return const LoadingWidget(size: 100);
                       },
                     ),
                     SizedBox(
@@ -150,9 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return TvViewWidget(
                               title: 'tvSeries'.tr(), tvEntity: movie);
                         }
-                        return const Center(
-                          child: RefreshProgressIndicator(),
-                        );
+                        return const LoadingWidget(size: 100);
                       },
                     ),
                     SizedBox(
@@ -196,16 +188,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     //     ),
                     //   ),
                     // ),
-                    SizedBox(
-                      height: 32.h,
-                    ),
-                    ScrollPanelWidget(
-                      title: 'sport'.tr(),
-                      movieEntities: const [],
-                    ),
-                    SizedBox(
-                      height: 110.h,
-                    ),
+                    // SizedBox(
+                    //   height: 32.h,
+                    // ),
+                    // ScrollPanelWidget(
+                    //   title: 'sport'.tr(),
+                    //   movieEntities: const [],
+                    // ),
+                    // SizedBox(
+                    //   height: 110.h,
+                    // ),
                   ],
                 ),
               )

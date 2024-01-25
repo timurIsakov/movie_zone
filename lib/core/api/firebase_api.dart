@@ -45,12 +45,19 @@ class FirebaseApi {
   }
 
   Future<UserModel> getCurrentUser() async {
-    final userId = await secureStorageService.get(key: ApiConstants.tUser);
+    final userId = await secureStorageService.get(key: StorageKeys.kSession);
 
     final json = await db.collection(ApiConstants.tUser).doc(userId).get();
 
     final model = UserModel.fromJson(json: json.data() as Map<String, dynamic>);
 
     return model;
+  }
+
+  Future<void> updateCurrentUser(UserEntity userEntity) async {
+    await db
+        .collection(ApiConstants.tUser)
+        .doc(userEntity.id)
+        .update(UserModel.fromEntity(entity: userEntity).toJson());
   }
 }

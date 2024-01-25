@@ -5,8 +5,8 @@ class ApiConstants {
   static const movies = "discover/movie";
   static const popularMovies = "movie/popular";
   static const tv = "discover/tv";
+  static const topRatedMovies = "movie/top_rated";
 
   //firebase
   static const String tUser = "users";
-  static const topRatedMovies = "movie/top_rated";
 }

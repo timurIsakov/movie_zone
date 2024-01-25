@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:movie_zone/features/auth/domain/entities/user_entity.dart';
 import 'package:movie_zone/features/main/data/model/movie_model.dart';
 
+@immutable
 class UserModel extends UserEntity {
-  const UserModel(
+  UserModel(
       {required super.id,
       required super.name,
       required super.email,
